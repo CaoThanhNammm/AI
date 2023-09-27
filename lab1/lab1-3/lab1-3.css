@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 900px;
+}
+
+.header{
+    background-color: tomato;
+    padding: 20px 0;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.desc{
+    margin: 20px 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.intro{
+    background-color: #bababa;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 30px;
+    border: 1px solid black;
+}
+
+.service h1 {
+    text-align: center;
+}
+
+.service--item{
+    height: 220px;
+    width: 180px;
+    background-color: #bababa;
+    margin: 20px 59px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+}
+
+.col{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer{
+    background-color: cadetblue;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid black;
+}
