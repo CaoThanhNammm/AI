@@ -37,7 +37,6 @@ public class Environment {
 
 	// Update enviroment state when agent do an action
 	public EnvironmentState executeAction(Action action) {
-
 		if (action == MOVE_RIGHT) {
 			if (envState.getAgentLocation() == LOCATION_A) {
 				envState.setAgentLocation(LOCATION_B);
