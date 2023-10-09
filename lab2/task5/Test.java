@@ -44,6 +44,6 @@ public class Test {
 
 		ISearchAlgo ucs = new UniformCostSearchAlgo();
 
-		System.out.println(ucs.execute(start, "goal"));
+		System.out.println(ucs.execute(start, "D", "C"));
 	}
 }
