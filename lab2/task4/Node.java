@@ -93,6 +93,7 @@ public class Node implements Comparable<Node> {
 		return true;
 	}
 
+//	+ "_" + this.parent.getLabel()
 	@Override
 	public String toString() {
 		return this.label + "_" + this.parent.getLabel() + " " + this.pathCost;

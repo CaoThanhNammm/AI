@@ -1,7 +1,9 @@
 package lab2.task4;
 
+import java.io.IOException;
+
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Node nodeS = new Node("S");
 		Node nodeA = new Node("A");
 		Node nodeB = new Node("B");
@@ -29,7 +31,6 @@ public class Test {
 		nodeD.addEdge(nodeH, 7);
 
 		ISearchAlgo ucs = new UniformCostSearchAlgo();
-
 		System.out.println(ucs.execute(nodeS, "G"));
 	}
 }

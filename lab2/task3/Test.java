@@ -1,7 +1,11 @@
 package lab2.task3;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException, IOException {
 		Node nodeS = new Node("S");
 		Node nodeA = new Node("A");
 		Node nodeB = new Node("B");
@@ -33,5 +37,6 @@ public class Test {
 
 		System.out.println(bfs.execute(nodeS, "G"));
 		System.out.println(dfs.execute(nodeS, "G"));
+		
 	}
 }

@@ -1,6 +1,8 @@
 package lab2.task4;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class UniformCostSearchAlgo implements ISearchAlgo {
@@ -12,35 +14,40 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
 			@Override
 			public int compare(Node node1, Node node2) {
 				// TODO Auto-generated method stub
-				return -node1.getLabel().compareTo(node2.getLabel());
+				int res = Double.compare(node1.getPathCost(), node2.getPathCost());
+
+				if (res == 0) {
+					return node1.getLabel().compareTo(node2.getLabel());
+				}
+
+				return res;
 			}
 		});
 
 		frontier.add(root);
-
 		frontier.peek().setPathCost(0);
-		frontier.peek().setDepth(0);
 
 		while (!frontier.isEmpty()) {
 			Node node = frontier.poll();
 
 			for (Edge e : node.getChildren()) {
-				e.getEnd().setParent(e.getBegin());
-				e.getEnd().setDepth(e.getBegin().getDepth() + 1);
+				Node parent = e.getBegin();
+				Node child = e.getEnd();
 
-				if (!frontier.contains(e.getEnd())) {
-					e.getEnd().setPathCost(Integer.MAX_VALUE);
+				child.setParent(parent);
+
+				if (child.getPathCost() == 0) {
+					child.setPathCost(Integer.MAX_VALUE);
 				}
 
-				if (e.getEnd().getPathCost() > e.getWeight() + e.getBegin().getPathCost()) {
-					e.getEnd().setPathCost(e.getWeight() + e.getBegin().getPathCost());
-
-					frontier.add(e.getEnd());
+				if (parent.getPathCost() + e.getWeight() < child.getPathCost()) {
+					child.setPathCost(parent.getPathCost() + e.getWeight());
 				}
+				frontier.add(child);
+			}
 
-				if (e.getEnd().equals(new Node(goal))) {
-					return e.getEnd();
-				}
+			if (node.getLabel().equals(goal)) {
+				return node;
 			}
 		}
 
