@@ -21,7 +21,6 @@ public class Controller implements ActionListener, ChangeListener {
 		view.getBtnStart().addActionListener(this);
 		view.getSpinnerRow().addChangeListener(this);
 		view.getSpinnerCol().addChangeListener(this);
-		setCleanerStart();
 	}
 
 	@Override
@@ -31,8 +30,9 @@ public class Controller implements ActionListener, ChangeListener {
 
 		if (view.getBtnStart().equals(src)) {
 			try {
-				view.runUntilClean();
-
+				if(!view.isClean()) {
+					view.step();
+				}
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -48,8 +48,8 @@ public class Controller implements ActionListener, ChangeListener {
 		int col = (int) view.getSpinnerCol().getValue();
 
 		if (row > 0 && col > 0) {
-//			view.createSquare((int) row, (int) col);
-//			
+			view.createSquare((int) row, (int) col);
+			setCleanerStart();
 		}
 	}
 

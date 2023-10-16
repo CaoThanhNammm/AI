@@ -61,13 +61,13 @@ public class View extends JFrame {
 		row = (int) spinnerRow.getValue();
 		col = (int) spinnerCol.getValue();
 
-		squares = new JLabel[10][10];
+		squares = new JLabel[row][col];
 
-		panelSquares.setLayout(new GridLayout(10, 10));
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
 
 				JLabel square = new Square(i, j);
+				panelSquares.setLayout(new GridLayout(row, col));
 
 				int xs = random.nextInt(10);
 				if (xs == 0 || xs == 1) {
@@ -97,7 +97,6 @@ public class View extends JFrame {
 
 		this.setTitle("Vaccum cleaner");
 		this.setSize(w, h);
-		this.setResizable(false);
 		this.setLayout(new BorderLayout());
 		this.add(panelOpe, BorderLayout.NORTH);
 		this.add(panelSquares, BorderLayout.CENTER);
@@ -193,16 +192,8 @@ public class View extends JFrame {
 		int col = (int) spinnerCol.getValue();
 
 		int[] agentLocation = agentLocation();
-		move(agentLocation[0], agentLocation[1], 9, 9);
+		move(agentLocation[0], agentLocation[1], col - 1, row - 1);
 
-	}
-
-	public void runUntilClean() throws InterruptedException {
-		while(!isClean()) {
-			Thread.sleep(200);
-			step();
-			update(this.getGraphics());
-		}
 	}
 
 	// kiem tra tat ca cac o deu sach
