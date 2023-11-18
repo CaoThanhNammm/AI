@@ -17,8 +17,8 @@ public class Test {
 
 		GA_NQueenAlgo ga = new GA_NQueenAlgo();
 		ga.initPopulation();
-		
 		System.out.println(ga.execute());
+
 	}
 
 }

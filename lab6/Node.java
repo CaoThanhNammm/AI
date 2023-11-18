@@ -108,7 +108,9 @@ public class Node {
 		Node x = new Node(state);
 		Node y = new Node(that);
 
-		for (int i = 3; i < Node.N; i++) {
+		int k = (new Random()).nextInt(N);
+		
+		for (int i = k; i < Node.N; i++) {
 			int temp = x.state[i].getRow();
 			x.state[i].setRow(y.state[i].getRow());
 			y.state[i].setRow(temp);

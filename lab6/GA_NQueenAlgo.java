@@ -25,13 +25,12 @@ public class GA_NQueenAlgo {
 		while (j < MAX_ITERATIONS) {
 			List<Node> newPopulation = new ArrayList<>();
 			for (int i = 0; i < population.size(); i++) {
-				Node x = new Node(getParentByRandomSelection());
-				Node y = new Node(getParentByRandomSelection());
+				Node x = new Node(getParentByTournamentSelection());
+				Node y = new Node(getParentByTournamentSelection());
 
 				Node child = reproduce(x, y);
 
 				if (Math.random() < MUTATION_RATE) {
-					System.out.println(child.getH());
 					child = mutate(child);
 				}
 
@@ -42,13 +41,16 @@ public class GA_NQueenAlgo {
 			j++;
 		}
 
-//		System.out.println(population.size());
-//		for (Node node : population) {
-//			System.out.println();
-//			node.displayBoard();
-//		}
+		Node re = population.get(0);
+		for (int i = 1; i < population.size(); i++) {
+			if (re.getH() > population.get(i).getH()) {
+				re = population.get(i);
+			}
+		}
 
-		return null;
+		re.displayBoard();
+		System.out.println(re.getH());
+		return re;
 	}
 
 	// Mutate an individual by selecting a random Queen and
@@ -65,15 +67,14 @@ public class GA_NQueenAlgo {
 	// Select K individuals from the population at random and
 	// select the best out of these to become a parent.
 	public Node getParentByTournamentSelection() {
-		int k = 5;
-		List<Node> allCandidates = new ArrayList<>();
-		for (int i = 0; i < k; i++) {
-			allCandidates.set(i, population.get(rd.nextInt()));
-		}
+		int k = 10;
+		Node re = population.get(rd.nextInt(population.size()));
 
-		Node re = null;
-		for (int i = 0; i < k; i++) {
-			re = allCandidates.get(i).getBestCandidate();
+		for (int i = 0; i < k - 1; i++) {
+			Node node = population.get(rd.nextInt(population.size()));
+			if (re.getH() > node.getH()) {
+				re = node;
+			}
 		}
 
 		return re;
@@ -81,6 +82,6 @@ public class GA_NQueenAlgo {
 
 	// Select a random parent from the population
 	public Node getParentByRandomSelection() {
-		return population.get(rd.nextInt(8));
+		return population.get(rd.nextInt(population.size()));
 	}
 }
