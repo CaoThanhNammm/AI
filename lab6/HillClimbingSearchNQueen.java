@@ -13,7 +13,6 @@ public class HillClimbingSearchNQueen {
 		int stepClimbed = 0;
 		while (true) {
 			Node neighbor = current.getBestCandidate();
-
 			if (neighbor.getH() < current.getH()) {
 				current = neighbor;
 				stepClimbed++;
@@ -48,7 +47,7 @@ public class HillClimbingSearchNQueen {
 			if (current.getH() == 0) {
 				return current;
 			}
-			
+
 			Node next = current.selectNextRandomCandidate();
 			double deltaE = next.getH() - current.getH();
 			if (deltaE > 0) {
@@ -56,7 +55,7 @@ public class HillClimbingSearchNQueen {
 			} else if (Math.exp(deltaE / t) < Math.random()) {
 				current = next;
 			}
-			
+
 			t *= coolingRate;
 		}
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Node {
-	public static final int N = 6;
+	public static final int N = 8;
 	private Queen[] state;
 
 	public Node() {
@@ -102,6 +102,19 @@ public class Node {
 			}
 		}
 		return re;
+	}
+
+	public Node reproduce(Node that) {
+		Node x = new Node(state);
+		Node y = new Node(that);
+
+		for (int i = 3; i < Node.N; i++) {
+			int temp = x.state[i].getRow();
+			x.state[i].setRow(y.state[i].getRow());
+			y.state[i].setRow(temp);
+		}
+
+		return x;
 	}
 
 }
